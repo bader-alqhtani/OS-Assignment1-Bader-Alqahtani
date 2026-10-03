@@ -29,11 +29,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | bader hamoud alqhtani |
+| **Student ID** | 445050224 |
+| **University Email** | 445050224@std.psau.edu.sa |
+| **GitHub Username** | bader-alqhtani |
+| **Repository Link** | https://github.com/bader-alqhtani/OS-Assignment1-Bader-Alqahtani |
  
 ---
 
@@ -129,16 +129,20 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October ,2026,7:30 AM]
+**What I did**: Forked the repository, configured the project in VS Code, and set up student ID (445050224)
 
 **Details**:
+- I forked the starter repository and renamed it to my name.
+- I cloned the repo to my PC and opened it in VS Code.
+- I changed the student ID on line 150 in SchedulerSimulation.java to my actual ID (445050224).
+- I ran the program to test it and make sure the baseline simulation works fine.
 
-**Challenges**:
+**Challenges**: At first, VS Code couldn't clone the repo because Git wasn't installed on my PC.
 
-**Solution**:
+**Solution**: I downloaded and installed Git, restarted VS Code, and then cloned the project successfully.
 
-**Time spent**:
+**Time spent**: 50 minutes.
 
 ---
 
