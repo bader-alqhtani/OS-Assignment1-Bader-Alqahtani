@@ -146,16 +146,16 @@
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+### Entry 2 - October 7, 2026 (05:00 AM)
+**What I did**: Implemented feature 1 (process priority) and made sure it works
 
-**Details**:
+**Details**: I added a priority variable to the Process class with values from 1 to 10. I modified the constructor to take the priority and added a getPriority method. In main, I set up random priority generation when creating the processes, and I updated the print message in addProcessToQueue to show the priority in the console.
 
-**Challenges**:
+**Challenges**: The priority numbers were not showing in the terminal at first, and I was confused until I realized the file changes weren't saved and compiled yet. Also, I had to be careful not to mess up the FIFO queue order since the assignment said priority is only for display.
 
-**Solution**:
+**Solution**: I checked where the console prints the message, saved the file properly, and ran it again from VS Code to verify that the priorities show up correctly.
 
-**Time spent**:
+**Time spent**: 4 hours
 
 ---
 
