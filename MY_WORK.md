@@ -129,7 +129,7 @@
 
 ## Your Development Log
 
-### Entry 1 - [October ,2026,7:30 AM]
+### Entry 1 - [October 3 ,2026,7:30 AM]
 **What I did**: Forked the repository, configured the project in VS Code, and set up student ID (445050224)
 
 **Details**:
