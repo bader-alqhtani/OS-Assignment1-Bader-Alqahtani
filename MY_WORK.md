@@ -159,16 +159,16 @@
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - October 7, 2026 (11:20 PM)
+**What I did**: Implemented feature 2, context switch counter, and checked the final count
 
-**Details**:
+**Details**: I added a static counter variable named contextSwitchCount inside the SchedulerSimulation class. Then inside the main scheduling while-loop, I incremented this counter right before currentThread.start each time a thread is dispatched. Finally, I added a print statement at the end of main after all processes finish to display the total context switches.
 
-**Challenges**:
+**Challenges**: Making sure the counter was placed in the correct scope so it increments on every single process execution rather than only when a process yields, and waiting for the full simulation to finish running to inspect the output at the very bottom of the terminal.
 
-**Solution**:
+**Solution**: I declared the variable as static in the class, placed the increment right before thread execution in the scheduler loop, and verified the final printed number after all processes completed.
 
-**Time spent**:
+**Time spent**: 3 hours
 
 ---
 
