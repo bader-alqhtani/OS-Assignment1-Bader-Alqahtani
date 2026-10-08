@@ -31,6 +31,9 @@ class Process implements Runnable {
     private int remainingTime; // Time left for the process to finish its execution
     // Feature 1: Process priority level (1-10, where 10 is highest)
     private int priority;
+    // Feature 3: process start and finish times
+    private long creationTime;
+    private long finishTime;
 
     // Constructor to initialize the process with name, burst time, and time quantum
     // Feature 1: Updated constructor to accept process priority
@@ -40,6 +43,7 @@ class Process implements Runnable {
         this.timeQuantum = timeQuantum;
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
         this.priority = priority;
+        this.creationTime = System.currentTimeMillis();
     }
 
     // This method will be called when the thread for this process is started
@@ -89,6 +93,8 @@ class Process implements Runnable {
                               " yields CPU for context switch" + Colors.RESET);
         } else {
             // If no time is left, the process has finished its execution
+            // Feature 3: Record finish time
+            this.finishTime = System.currentTimeMillis();
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + 
                               Colors.RESET);
@@ -120,6 +126,8 @@ class Process implements Runnable {
                               Colors.RESET + " [" + remainingTime + "ms]");
             Thread.sleep(remainingTime); // Run until completion
             remainingTime = 0; // Mark the process as completed
+            // Feature 3: Record finish time
+            this.finishTime = System.currentTimeMillis();
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + Colors.RESET);
             System.out.println();
@@ -149,6 +157,14 @@ class Process implements Runnable {
     public int getPriority() {
         return priority;
     }
+    // Feature 3: Calculation methods
+    public long getTurnaroundTime() {
+        return finishTime - creationTime;
+    }
+
+    public long getWaitingTime() {
+        return Math.max(0, getTurnaroundTime() - burstTime);
+    }
 }
 
 public class SchedulerSimulation {
@@ -173,6 +189,8 @@ public class SchedulerSimulation {
         
         // Map to associate each thread with its respective process object
         Map<Thread, Process> processMap = new HashMap<>();
+        // Feature 3: array to store processes for the summary table
+        Process[] allProcesses = new Process[numProcesses];
         
         // Print simulation header with elegant formatting
         System.out.println("\n" + Colors.BOLD + Colors.BRIGHT_CYAN + 
@@ -211,6 +229,8 @@ public class SchedulerSimulation {
 
             // Feature 1: Create a new process object with priority included
             Process process = new Process("P" + i, burstTime, timeQuantum, priority);
+            // Feature 3: save process in array for the table
+            allProcesses[i - 1] = process;
             
             // Add the process to the ready queue and the map
             addProcessToQueue(process, processQueue, processMap);
@@ -293,6 +313,15 @@ public class SchedulerSimulation {
         // Feature 2: Display total context switches at the end of simulation
         System.out.println(Colors.BOLD + Colors.YELLOW + "  Total context switches: " + 
                           contextSwitchCount + Colors.RESET + "\n");
+        // Feature 3: Summary Table
+        System.out.println();
+        System.out.println("Process | Burst Time | Waiting Time | Turnaround Time");
+        System.out.println("-----------------------------------------------------");
+        for (int i = 0; i < allProcesses.length; i++) {
+            Process p = allProcesses[i];
+            System.out.println(p.getName() + " | " + p.getBurstTime() + "ms | " + p.getWaitingTime() + "ms | " + p.getTurnaroundTime() + "ms");
+        }
+        System.out.println();
     }
     
     // Method to add a process to the queue and map, while printing a "ready" message
