@@ -172,16 +172,16 @@
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - October 9, 2026, (02:00 AM)
+**What I did**: Implemented feature 3, waiting time and turnaround time tracking with a summary table
 
-**Details**:
+**Details**: I added creationTime and finishTime variables inside the Process class using System.currentTimeMillis. I updated run and runToCompletion to record when each process finishes executing. I added getter methods to calculate turnaround time and waiting time. In main, I created an array called allProcesses to store every process, and at the end of the simulation, I printed a summary table listing the process name, burst time, waiting time, and turnaround time.
 
-**Challenges**:
+**Challenges**: Making sure finishTime was recorded in both run and runToCompletion so no process was missed, and setting up the array size properly using numProcesses before the loop starts.
 
-**Solution**:
+**Solution**: I recorded the finish timestamp in both methods right where the process marks completion, stored each created process by index in the array, and looped through it to print the table lines after the scheduler finished.
 
-**Time spent**:
+**Time spent**: 6 hours
 
 ---
 
