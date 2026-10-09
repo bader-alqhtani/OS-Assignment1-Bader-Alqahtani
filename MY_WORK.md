@@ -185,16 +185,21 @@
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - October 9, 2026, 4:35 PM
+**What I did**: Completed the Part B reflection and Part C technical questions in MY_WORK.md.
 
 **Details**:
+- Wrote answers for Part B about multithreading and Feature 3
+- Answered Part C questions about thread states and thread vs process
+- Added my console output for P5 to show how re-queueing works
+- Wrote two examples for Round-Robin using desktop OS and game engines
+- Filled out the summary section at the end
 
-**Challenges**:
+**Challenges**: Thinking of realistic and clear real-world examples for Round-Robin.   
 
-**Solution**:
+**Solution**: Looked at how desktop apps share the CPU and how game engines update tasks during a frame.
 
-**Time spent**:
+**Time spent**: 3 hours
 
 ---
 
