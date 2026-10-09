@@ -241,7 +241,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+This assignment showed me how multithreading shares CPU time between tasks. I learned that our Process class implements Runnable to run on Java threads. The scheduler calls Thread.start() to begin, while currentThread.join() waits for the time slice to end. Using Thread.sleep() easily mimics work progress without stopping the program. I was surprised that threads share memory, which makes updating process data very simple.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -249,7 +249,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+The hardest task was completing Feature 3 to calculate waiting and turnaround times. Saving finishTime was tricky because jobs exit in run() or inside runToCompletion(). Forgetting the timestamp in runToCompletion() would completely break the calculations for the last process. It was also difficult to store every process in an array without changing the queue order. Getting the console summary table properly aligned took several test runs.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -257,7 +257,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I handled these issues by building one feature at a time instead of doing everything at once. When something went wrong, I used System.out.println to check variable values in the terminal. Reading the comments in SchedulerSimulation.java helped me understand how threads move through the queue. Testing the code inside VS Code let me see the live progress bars working properly. Checking my changes in the Source Control panel before committing kept the code clean.
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -265,7 +265,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+Multithreading is very important in game engines like Godot to prevent lag. Godot uses separate background threads for physics, streaming audio, and loading maps. If it used one thread, the whole game would freeze during heavy file loading. Splitting work across threads gives every system quick CPU slices without stuttering. This assignment helped me see how time slicing keeps complex software smooth and responsive.
 
 ### Optional: What would you like to learn more about?
 
@@ -297,7 +297,7 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+While a thread operates inside a process and shares memory with other threads, a process is an independent program with its own memory. Since true processes require too much memory and system overhead, we used threads in this case. Our code uses Thread thread = new Thread(process) inside addProcessToQueue() to wrap each job in a real Java thread. Our scheduler can readily share the queue and map in the same memory space by using threads. 
 
 ## Question 2: Ready Queue Behavior
 
@@ -309,15 +309,22 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+In Round-Robin, a process yields the CPU and is added back to the end of the ready queue if it does not complete within its time quantum. Because it prevents long processes from monopolizing the CPU and starving shorter tasks, this re-queueing behavior is crucial for fairness. Processes that had burst times longer than the time quantum in my simulation run had to wait several cycles to get their turn again. In my result, for instance, P5 ran for a quantum, yielded the CPU, then reentered the queue before being chosen to finish once more.
 
 Example from my output:
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+▶ P5 executing quantum [3000ms] 
+  ⚡ Quantum progress: [███████████████] 100%
+  ⏸ P5 completed quantum 3000ms │ Overall progress: [██████████████░░░░░░] 70%
+     Remaining time: 1240ms
+  ↻ P5 yields CPU for context switch
+
+  ➕ P5 (Priority: 2) added to ready queue │ Burst time: 4240ms
+
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+This sample shows P5 completing its 3000ms quantum with 1240ms of execution time remaining. It yields the CPU and is returned to the ready queue so waiting processes can get processor time.
 
 ## Question 3: Thread Lifecycle
 
@@ -327,15 +334,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**:  P1 enters this state when its Thread object is instantiated in addProcessToQueue() using Thread thread = new Thread(process).
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: P1 moves to Runnable when the scheduler calls currentThread.start(), making it ready for CPU execution.
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: P1 enters the Running state once the OS thread scheduler allocates CPU time to execute its run() method.
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**: P1 enters a timed waiting state inside run() during Thread.sleep(), while the main thread waits on currentThread.join().
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: P1 reaches the Terminated state when its run() method finishes executing its remaining instructions.
 
 ## Question 4: Real-World Applications
 
@@ -345,32 +352,32 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): Desktop OS Interactive Process Scheduling
 
 **Description**:
-[Describe the real-world scenario.]
+Round-Robin scheduling is used by contemporary desktop operating systems to distribute CPU time among several interactive user programs that are working simultaneously, such as a web browser, code editor, and terminal. Before the OS initiates a context switch to allow the next waiting application to run, each running application is given a brief time quantum to complete its present activities.
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+Because no single background task or complex calculation can monopolize the CPU, Round-Robin guarantees responsiveness and fairness. The user interface is kept smooth and responsive to user input by constantly rotating small time slices across open applications.
 
-### Example 2: [Name of application/scenario]
+### Example 2: Game Engine Subsystem Scheduling
 
 **Description**:
-[Describe the real-world scenario or application.]
+Game engines in video game development run several background tasks across worker threads, including physics updates, NPC AI routines, and asset streaming. Instead of allowing one heavy task to run continuously, the engine uses Round-Robin scheduling to assign brief execution time slices to each system throughout each game frame.
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+Round-Robin avoids stuttering and frame rate drops while offering predictability. The entire game render loop would lag if NPC pathfinding or physics calculations took over all CPU power. Gameplay is kept responsive and smooth by dividing execution evenly among small time slices.
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. How Round-Robin shares CPU time fairly so long tasks do not freeze the system.
+2. The difference between threads and processes in memory usage and overhead.
+3. How Java thread states change using start(), sleep(), and join().
 
 **Concepts I need to study more:**
-1.
-2.
+1. How game engines split background tasks across threads to prevent FPS drops.
+2. How to safely share game data between threads without breaking gameplay logic.
 
 ---
 
