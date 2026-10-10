@@ -220,13 +220,13 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: 16.5 hours
 
-**Most challenging part**:
+**Most challenging part**: Getting the waiting and turnaround time calculations right, and having to wait through the long simulation in the terminal to verify the summary table.
 
-**Most interesting learning**:
+**Most interesting learning**: I enjoyed observing the scheduling loop in action rather than only reading about it, like seeing processes pause, give up the CPU, and return to the ready queue.
 
-**What I would do differently next time**:
+**What I would do differently next time**: I would make small Git commits as I go and write down my notes right away so I don't forget them later.
 
 ---
 
